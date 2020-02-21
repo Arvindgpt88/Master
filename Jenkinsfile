@@ -1,4 +1,4 @@
-properties([parameters([choice(choices: 'master\npipeline\nnew-branch', name: 'Branch')])])
+properties([parameters([choice(choices: 'master\npipeline\nnew-branch\nStore_variable', name: 'Branch')])])
 
 node{
 	
@@ -17,7 +17,7 @@ node{
  }
  
  stage('Build Docker Imager'){
-	 dockerImage = docker.build("arvindgpt88/gupta123:scratchit")
+	 docker version
  }
  stage('Push to Docker Hub'){
         withDockerRegistry(credentialsId: 'dockeridnew', url: "https://index.docker.io/v1/") {
