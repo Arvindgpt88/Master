@@ -1,39 +1,25 @@
 pipeline {
-   agent any
-  
-   stages {
-	   
-     stage('Set variables'){
-       steps{     
-	  def mvnhome = tool name: 'Maven', type: 'maven'
-          tool name: 'DOCKER_TOOLBOX_INSTALL_PATH', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 
+    agent any
+    stages {
+        stage('Send Email') {
+            steps {
+            node ('master'){
+                echo 'Send Email'
+            }
         }
-     }     
-	     
-     stage('SCM Checkout'){
-    // Clone repo
-        steps{     
-           git branch: "${params.Branch}", 
-           url: 'https://github.com/Arvindgpt88/Master.git' 
         }
-     }	     
-	
-   stage('Maven Clean Package'){
-	 steps{   
-	    bat "${mvnhome}/bin/mvn clean package"
-	}
-     }
- 
-   stage('IP CONFIG'){
-	 steps{
-	    bat "ipconfig"
-	 }
-     }
-    post {
-        always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'arvindgpt88@gmail.com']], subject: 'Jenkins Build'
-								
-	}								
- }
-}
+    }
+    post { 
+        always { 
+            echo 'I will always say Hello!'
+        }
+        aborted {
+            echo 'I was aborted'
+        }
+        failure {
+            mail to: 'arvindgpt88@gmail.com',
+            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+            body: "Something is wrong with ${env.BUILD_URL}"
+        }
+    }
 }
