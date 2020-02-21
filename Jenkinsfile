@@ -17,15 +17,8 @@ node{
  }
  
  stage('Build Docker Imager'){
-	 docker version
+	 sh 'docker version'
  }
- stage('Push to Docker Hub'){
-        withDockerRegistry(credentialsId: 'dockeridnew', url: "https://index.docker.io/v1/") {
-	   dockerImage.push("scratchit")
-	}
-      }	 
- 
-	 
- 
+
 }
 
