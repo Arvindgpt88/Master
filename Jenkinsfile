@@ -17,7 +17,7 @@ node{
  }
  
  stage('IP CONFIG'){
-	 Version = C:\Windows\System32\cmd.exe
+	 Version = "C:\Windows\System32\cmd.exe"
 	 bat "$(Version)\ipconfig"
  }
 
