@@ -3,7 +3,7 @@ properties([parameters([choice(choices: 'master\npipeline\nnew-branch\nStore_var
 node{
 	
        def mvnhome = tool name: 'Maven', type: 'maven'
-	def dockerImage
+	def Version
        tool name: 'DOCKER_TOOLBOX_INSTALL_PATH', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
     stage('SCM Checkout'){
     // Clone repo
@@ -17,8 +17,8 @@ node{
  }
  
  stage('IP CONFIG'){
-	 def ip = C:\Windows\System32\cmd.exe
-	 bat "$(C:\Windows\System32\cmd.exe)\ipconfig"
+	 Version = C:\Windows\System32\cmd.exe
+	 bat "$(Version)\ipconfig"
  }
 
 }
