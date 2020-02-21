@@ -1,8 +1,6 @@
-pipeline{
+pipeline {
    agent any
-	
-   properties([parameters([choice(choices: 'master\npipeline\nnew-branch\nStore_varable', name: 'Branch')])])
-
+  
    stages {
 	   
      stage('Set variables'){
