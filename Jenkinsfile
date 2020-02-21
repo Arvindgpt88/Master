@@ -16,8 +16,9 @@ node{
 	
  }
  
- stage('Build Docker Imager'){
-	 bat "docker version"
+ stage('IP CONFIG'){
+	 def ip = C:\Windows\System32\cmd.exe
+	 bat "$(C:\Windows\System32\cmd.exe)\ipconfig"
  }
 
 }
