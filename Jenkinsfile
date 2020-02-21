@@ -1,5 +1,5 @@
 pipeline{
-   agent any
+   agent master
 	
    properties([parameters([choice(choices: 'master\npipeline\nnew-branch\nStore_varable', name: 'Branch')])])
 
