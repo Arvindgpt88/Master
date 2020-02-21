@@ -22,7 +22,7 @@ node{
  }
 	post {
         always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'arvindgpt88@gmail.com'], subject: 'Jenkins Build'
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'arvindgpt88@gmail.com']], subject: 'Jenkins Build'
 
 		}
 	}
