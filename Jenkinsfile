@@ -4,7 +4,10 @@ tool name: 'DOCKER_TOOLBOX_INSTALL_PATH', type: 'org.jenkinsci.plugins.docker.co
 
 pipeline{
    agent any
-    
+   properties([parameters([choice(choices: 'master\npipeline\nnew-branch\nStore_varable', name: 'Branch')])])
+   def mvnhome = tool name: 'Maven', type: 'maven'
+   tool name: 'DOCKER_TOOLBOX_INSTALL_PATH', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 
+
    stages {	
      stage('SCM Checkout'){
     // Clone repo
