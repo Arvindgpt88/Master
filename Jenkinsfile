@@ -17,7 +17,7 @@ node{
  }
  
  stage('Build Docker Imager'){
-	 sh 'docker version'
+	 bat "docker version"
  }
 
 }
