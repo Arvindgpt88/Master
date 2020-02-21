@@ -1,4 +1,4 @@
-properties([parameters([choice(choices: 'master\npipeline\nnew-branch\nStore_variable', name: 'Branch')])])
+properties([parameters([choice(choices: 'master\npipeline\nnew-branch\nStore_varable', name: 'Branch')])])
 
 node{
 	
