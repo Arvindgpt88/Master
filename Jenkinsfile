@@ -20,8 +20,8 @@ node{
 	 bat "ipconfig"
 	 
  }
-	post {
-        always {
+ post {
+       always {
             emailext body: 'A Test EMail', to: 'arvindgpt88@gmail.com', subject: 'Jenkins Build'
 
 		}
