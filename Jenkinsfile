@@ -1,6 +1,4 @@
 node {
-     
-   stages {  
  	     
     stage('SCM Checkout'){
     // Clone repo
@@ -11,7 +9,6 @@ node {
    stage('Ok') {
                 echo "Ok"
             }
-   }
  
     /*post {
         always {
