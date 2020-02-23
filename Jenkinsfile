@@ -11,22 +11,18 @@ pipeline {
         }
      }	     
 	
-   stage('Maven Clean Package'){
-	 steps{   
-	    bat "${mvnhome}/bin/mvn clean package"
-	}
-     }
+   stage('Ok') {
+            steps {
+                echo "Ok"
+            }
+        }
+   }
  
-   stage('IP CONFIG'){
-	 steps{
-	    bat "ipconfig"
-	 }
-     }
     post {
         always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'arvindgpt88@gmail.com']], subject: 'Jenkins Build'
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'aravindgpt88@gmail.com']], subject: 'Jenkins Build'
 								
 	}								
  }
 }
-}
+
