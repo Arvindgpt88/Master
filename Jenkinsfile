@@ -5,8 +5,7 @@ node {
     stage('SCM Checkout'){
     // Clone repo
              
-           git branch: "${params.Branch}", 
-           url: 'https://github.com/Arvindgpt88/Master.git' 
+           git url: 'https://github.com/Arvindgpt88/Master.git' 
         }     
 	
    stage('Ok') {
