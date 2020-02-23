@@ -14,11 +14,11 @@ node {
             }
    }
  
-    post {
+    /*post {
         always {
             emailext body: 'A Test EMail', recipientProviders: [[$class: 'aravindgpt88@gmail.com']], subject: 'Jenkins Build'
 								
 	}								
- }
+ }*/
 }
 
