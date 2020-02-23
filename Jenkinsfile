@@ -1,21 +1,17 @@
-pipeline {
-   agent any
-  
+node {
+     
    stages {  
  	     
     stage('SCM Checkout'){
     // Clone repo
-        steps{     
+             
            git branch: "${params.Branch}", 
            url: 'https://github.com/Arvindgpt88/Master.git' 
-        }
-     }	     
+        }     
 	
    stage('Ok') {
-            steps {
                 echo "Ok"
             }
-        }
    }
  
     post {
