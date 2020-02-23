@@ -1,16 +1,9 @@
 pipeline {
-   agent none
+   agent any
   
-   stages {
-	   
-     stage('Set variables'){
-       steps{     
-	  def mvnhome = tool name: 'Maven', type: 'maven'
-          tool name: 'DOCKER_TOOLBOX_INSTALL_PATH', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 
-        }
-     }     
-	     
-     stage('SCM Checkout'){
+   stages {  
+ 	     
+    stage('SCM Checkout'){
     // Clone repo
         steps{     
            git branch: "${params.Branch}", 
