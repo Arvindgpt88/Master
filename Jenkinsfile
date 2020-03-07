@@ -1,4 +1,4 @@
-properties([parameters([choice(choices: 'master\npipeline\nnew-branch\ndocker\nhttps_test', name: 'Branch')])])
+properties([parameters([choice(choices: 'master\npipeline\nnew-branch\ndocker\nhttps_test\nhttps_nginx', name: 'Branch')])])
 
 node{
 	
