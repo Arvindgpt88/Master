@@ -31,7 +31,7 @@ spec:
       volumes:
       - name: secret-volume
         secret:
-          secretName: nginxsecret
+          secretName: example-com-tls
       - name: configmap-volume
         configMap:
           name: nginxconfigmap
@@ -42,7 +42,7 @@ spec:
         - containerPort: 443
         - containerPort: 80
         volumeMounts:
-        - mountPath: /etc/nginx/ssl
+        - mountPath: C:\Kube\
           name: secret-volume
-        - mountPath: /etc/nginx/conf.d
+        - mountPath: C:\Kube\default.conf
           name: configmap-volume
