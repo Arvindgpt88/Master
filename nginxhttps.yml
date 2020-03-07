@@ -17,32 +17,20 @@ spec:
     app: nginxhttps
     
 ---
-apiVersion: v1
-kind: ReplicationController
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  name: my-nginx
+  name: nginx
 spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      volumes:
-      - name: secret-volume
-        secret:
-          secretName: example-com-tls
-      - name: configmap-volume
-        configMap:
-          name: nginxconfigmap
-      containers:
-      - name: nginxhttps
-        image: nginx
-        ports:
-        - containerPort: 443
-        - containerPort: 80
-        volumeMounts:
-        - mountPath: C:\Kube\
-          name: secret-volume
-        - mountPath: C:\Kube\default.conf
-          name: configmap-volume
+  tls:
+    - secretName: example-com-tls
+      hosts:
+        - example.com        
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - backend:
+              serviceName: nginx
+              servicePort: 80
