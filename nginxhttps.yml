@@ -17,19 +17,32 @@ spec:
     app: nginxhttps
     
 ---
-apiVersion: extensions/v1beta1
-kind: Ingress
+apiVersion: v1
+kind: ReplicationController
 metadata:
-  name: nginxhttp
+  name: my-nginx
 spec:
-  tls:
-    - hosts:
-      - example.com
-      secretName: example-com-tls
-  rules:
-  - host: example.com
-    http:
-      paths:
-      - backend:
-          serviceName: nginxhttpsvc
-          servicePort: 80
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: nginxsecret
+      - name: configmap-volume
+        configMap:
+          name: nginxconfigmap
+      containers:
+      - name: nginxhttps
+        image: nginx
+        ports:
+        - containerPort: 443
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx/ssl
+          name: secret-volume
+        - mountPath: /etc/nginx/conf.d
+          name: configmap-volume
