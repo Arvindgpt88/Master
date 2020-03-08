@@ -17,22 +17,37 @@ spec:
     app: nginxhttps
     
 ---
----
-apiVersion: extensions/v1beta1
-kind: Ingress
+apiVersion: v1
+kind: ReplicationController
 metadata:
-  name: nginx
-  annotations:
-    ingress.kubernetes.io/ssl-redirect: "true"
+  name: my-nginx
 spec:
-  tls:
-    - secretName: example-com-tls
-      hosts:
-        - example.com        
-  rules:
-    - host: example.com
-      http:
-        paths:
-          - backend:
-              serviceName: nginx
-              servicePort: 80
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: example-com-tls
+      - name: configmap-volume
+        configMap:
+          name: nginxconfigmap
+      containers:
+      - name: nginxhttps
+        ports:
+        - containerPort: 443
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+        volumeMounts:
+        - mountPath: C:\Kube\
+          name: secret-volume
+        - mountPath: C:\Kube\default.conf
+          name: configmap-volume
